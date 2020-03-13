@@ -1,28 +1,36 @@
 const http = require('http');
 const fs = require('fs');
 const fetch = require('node-fetch');
+const argv = require("yargs").argv;
+
+// add module 
+const readFile = require('./readFile');
+// const saveFile = require('./saveFile.js');
 
 
 
 
-function readFile(urlFile){
-    fetch(urlFile)
-    .then(res => res.text())
-    .then(body => console.log(body));
+
+
+// kiem tra link co dau / 
+function getUrl(url) {
+    if (url[url.length - 1] != "/") url = url + "/";   
+    return url;
 }
 
+readFile(getUrl('https://viblo.asia'),2).then(body=>{
+    console.log(body);
+})
 
 readFile("https://viblo.asia/newest");
 
 
-function saveFile(nameFile){
-    fs.writeFile(name.html,data,(err)=>{
-        if(err)
-        throw err;
-        else
-            console.log('Ghi file thanh cong')
-    } )
-}
+
+
+
+
+
+
 
 
 
