@@ -7,22 +7,19 @@ const argv = require("yargs").argv;
 const readFile = require('./readFile');
 // const saveFile = require('./saveFile.js');
 
+//lay url tu file json
+const links = JSON.parse(fs.readFileSync("./links.json"));
 
+//lặp tất cả link trong json
+for (link of links) {
+    // đọc và ghi file từ page 1 đến n;
+    for (let i = 1; i <= argv._; i++) {
 
-
-
-
-// kiem tra link co dau / 
-function getUrl(url) {
-    if (url[url.length - 1] != "/") url = url + "/";   
-    return url;
+        readFile(link, i);
+    }
 }
 
-readFile(getUrl('https://viblo.asia'),2).then(body=>{
-    console.log(body);
-})
 
-readFile("https://viblo.asia/newest");
 
 
 
